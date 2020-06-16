@@ -46,4 +46,7 @@ RUN curl -sS -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST
 # Install tar-globs
 RUN yarn global add @vht/tar-globs
 
+# Copy in utility scripts
+COPY ./bin/veracodeupload.sh /usr/local/bin/
+
 WORKDIR /workspace
