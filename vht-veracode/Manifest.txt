@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: . commons-cli-1.4.jar veracode-wrapper.jar
+Bundle-Name: VHT Veracode Wrappers
+Bundle-ClassPath: .,commons-cli-1.4.jar
+Created-By: VHT

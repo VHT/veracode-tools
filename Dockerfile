@@ -49,4 +49,10 @@ RUN yarn global add @vht/tar-globs
 # Copy in utility scripts
 COPY ./bin/veracodeupload.sh /usr/local/bin/
 
+# Build vht-veracode.jar utility
+WORKDIR /veracode/vht-veracode
+COPY ./vht-veracode .
+RUN ./build.sh
+RUN cp *.jar /veracode
+
 WORKDIR /workspace
