@@ -8,6 +8,28 @@ For all the commands below you can bind mount your application source/build dire
 
     docker run -it -v /source-dir:/workspace ...
 
+# Releasing a new version
+
+Build the docker image locally:
+
+```
+docker build -t virtualhold/veracode-tools:1.0.0 .
+```
+
+Run your image and make sure it works.
+
+
+```
+docker build -t virtualhold/veracode-tools:latest .
+
+docker push virtualhold/veracode-tools:1.0.0
+docker push virtualhold/veracode-tools:latest
+git tag 1.0.0
+git push origin master --tags
+```
+
+# Available Libraries and Commands
+
 ## Java API Wrapper
 
     docker run -it --rm -v /source-dir:/workspace \
