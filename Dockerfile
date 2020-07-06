@@ -31,6 +31,21 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DF7DD7A50B746DD4 \
 && apt-get update \
 && apt-get install srcclr
 
+#====================#
+## Ruby Setup
+#====================#
+USER root
+RUN apt-get install -y libssl-dev libreadline-dev zlib1g-dev nodejs
+RUN wget https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.gz
+RUN tar -zxvf ./ruby-2.6.5.tar.gz
+
+WORKDIR ./ruby-2.6.5
+RUN ./configure && make && make install
+RUN gem install --no-document bundler jmespath rails nokogiri pg
+
+# https://stackoverflow.com/questions/47026174/find-spec-for-exe-cant-find-gem-bundler-0-a-gemgemnotfoundexception/54083113#54083113
+RUN gem update --system
+
 WORKDIR /veracode
 
 RUN VERACODE_WRAPPER_VERSION=$(curl -sS "https://search.maven.org/solrsearch/select?q=g:%22com.veracode.vosp.api.wrappers%22&rows=20&wt=json" | jq -r '.["response"]["docs"][0].latestVersion') \
